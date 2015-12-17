@@ -87,6 +87,7 @@
     <Compile Include="Search\SearchFilterComparer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Contentful.NET.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
