@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
 namespace Contentful.NET.DataModels
@@ -77,6 +78,11 @@ namespace Contentful.NET.DataModels
         public Link GetLink(string propertyName)
         {
             return CastPropertyValue<Link>(propertyName);
+        }
+
+        public IEnumerable<Link> GetLinks(string propertyName)
+        {
+            return CastPropertyValue<IEnumerable<Link>>(propertyName);
         }
 
         /// <summary>
