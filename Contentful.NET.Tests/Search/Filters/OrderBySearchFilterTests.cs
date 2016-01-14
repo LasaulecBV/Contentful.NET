@@ -29,11 +29,10 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionOnInvalidProperty()
         {
             // ReSharper disable once ObjectCreationAsStatement
-            new OrderBySearchFilter(null, OrderByDirection.Ascending);
+            Assert.That(() => new OrderBySearchFilter(null, OrderByDirection.Ascending), Throws.TypeOf<ArgumentException>());
         }
     }
 }

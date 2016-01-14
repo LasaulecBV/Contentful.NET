@@ -32,11 +32,10 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionOnInvalidPropertyName()
         {
             const string equalityValue = "asd";
-            new EqualitySearchFilter(null, equalityValue);
+            Assert.That(() => new EqualitySearchFilter(null, equalityValue), Throws.TypeOf<ArgumentException>());
         }
     }
 }

@@ -54,10 +54,9 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionOnInvalidPropertyName()
         {
-            new NumericSearchFilter(null, 15, NumericEquality.GreaterThanEqualTo);
+            Assert.That(() => new NumericSearchFilter(null, 15, NumericEquality.GreaterThanEqualTo), Throws.TypeOf<ArgumentException>());
         }
     }
 }

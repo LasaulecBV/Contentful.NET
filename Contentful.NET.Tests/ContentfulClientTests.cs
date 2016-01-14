@@ -32,15 +32,13 @@ namespace Contentful.NET.Tests
 		}
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestPublicConstructorThrowsArgumentExceptionWhenAccessTokenIsMissing()
         {
-            new ContentfulClient("", "space");
+            Assert.That(() => new ContentfulClient("", "space"), Throws.TypeOf<ArgumentException>());
         }
 
         [Test]
-        [ExpectedException(typeof(ContentfulException))]
-        public async Task TestMakeGetRequestThrowsContentfulExceptionOnErrorCode()
+        public void TestMakeGetRequestThrowsContentfulExceptionOnErrorCode()
         {
             const string requestUri = "http://test.com";
             var cancellationToken = new CancellationToken();
@@ -53,7 +51,7 @@ namespace Contentful.NET.Tests
                 });
 
             var client = new ContentfulClient("spaceId", mockHttpClient.Object);
-            await client.MakeGetRequestAsync(requestUri, cancellationToken);
+            Assert.That(async () => await client.MakeGetRequestAsync(requestUri, cancellationToken), Throws.TypeOf<ContentfulException>());
         }
 
         [Test]
