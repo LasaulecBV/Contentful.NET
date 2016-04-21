@@ -20,21 +20,24 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestLocationNearThrowsExceptionOnInvalidPropertyName()
         {
-            Assert.That(() => new LocationSearchFilter(null, 42.14m, 54.22m), Throws.TypeOf<ArgumentException>());
+            new LocationSearchFilter(null, 42.14m, 54.22m);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationNearThrowsExceptionOnInvalidLatitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", -180, 90), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", -180, 90);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationNearThrowsExceptionOnInvalidLongitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", 45, 200), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", 45, 200);
         }
 
         [Test]
@@ -49,21 +52,24 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestLocationWithinThrowsExceptionOnInvalidPropertyName()
         {
-            Assert.That(() => new LocationSearchFilter("", 42.14m, 54.22m, 43.14m, 56.22m), Throws.TypeOf<ArgumentException>());
+            new LocationSearchFilter("", 42.14m, 54.22m, 43.14m, 56.22m);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationRadiusThrowsExceptionOnInvalidLatitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", -180, 90, 45), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", -180, 90, 45);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationRadiusThrowsExceptionOnInvalidLongitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", 45, 200, 45), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", 45, 200, 45);
         }
 
         [Test]
@@ -78,33 +84,38 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestLocationRadiusThrowsExceptionOnInvalidPropertyName()
         {
-            Assert.That(() => new LocationSearchFilter("", 42.14m, 54.22m, 43.14m), Throws.TypeOf<ArgumentException>());
+            new LocationSearchFilter("", 42.14m, 54.22m, 43.14m);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationWithinThrowsExceptionOnInvalidFirstLatitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", -180, 90, 45, 45), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", -180, 90, 45, 45);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationWithinThrowsExceptionOnInvalidFirstLongitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", 45, 200, 45, 45), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", 45, 200, 45, 45);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationWithinThrowsExceptionOnInvalidSecondLatitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", 45, 45, -180, 90), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", 45, 45, -180, 90);
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestLocationWithinThrowsExceptionOnInvalidSecondLongitude()
         {
-            Assert.That(() => new LocationSearchFilter("property", 45, 45, 45, 200), Throws.TypeOf<ArgumentOutOfRangeException>());
+            new LocationSearchFilter("property", 45, 45, 45, 200);
         }
     }
 }

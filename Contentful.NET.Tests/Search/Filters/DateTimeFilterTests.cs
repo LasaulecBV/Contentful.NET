@@ -37,9 +37,10 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionForInvalidProperty()
         {
-            Assert.That(() => new DateTimeSearchFilter(null, _date, NumericEquality.LessThan), Throws.TypeOf<ArgumentException>());
+            new DateTimeSearchFilter(null, _date, NumericEquality.LessThan);
         }
 
         private void AssertEquality(NumericEquality equality, SearchFilterComparer comparer)

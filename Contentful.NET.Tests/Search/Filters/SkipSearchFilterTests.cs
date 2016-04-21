@@ -17,10 +17,11 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionOnInvalidLimit()
         {
             // ReSharper disable once ObjectCreationAsStatement
-            Assert.That(() => new SkipSearchFilter(-10), Throws.TypeOf<ArgumentException>());
+            new SkipSearchFilter(-10);
         }
     }
 }
