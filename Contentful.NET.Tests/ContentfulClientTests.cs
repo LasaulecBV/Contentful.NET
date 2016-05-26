@@ -32,28 +32,30 @@ namespace Contentful.NET.Tests
 		}
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestPublicConstructorThrowsArgumentExceptionWhenAccessTokenIsMissing()
         {
-            new ContentfulClient("", "space");
+            // ReSharper disable once ObjectCreationAsStatement
+            Assert.Throws<ArgumentException>(() => new ContentfulClient("", "space"));
         }
 
         [Test]
-        [ExpectedException(typeof(ContentfulException))]
-        public async Task TestMakeGetRequestThrowsContentfulExceptionOnErrorCode()
+        public void TestMakeGetRequestThrowsContentfulExceptionOnErrorCode()
         {
-            const string requestUri = "http://test.com";
-            var cancellationToken = new CancellationToken();
+            Assert.ThrowsAsync<ContentfulException>(async () =>
+            {
+                const string requestUri = "http://test.com";
+                var cancellationToken = new CancellationToken();
 
-            var mockHttpClient = new Mock<IHttpClientWrapper>();
-            mockHttpClient.Setup(h => h.GetAsync(requestUri, cancellationToken))
-                .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.BadRequest)
-                {
-                    Content = new StringContent("")
-                });
+                var mockHttpClient = new Mock<IHttpClientWrapper>();
+                mockHttpClient.Setup(h => h.GetAsync(requestUri, cancellationToken))
+                    .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.BadRequest)
+                    {
+                        Content = new StringContent("")
+                    });
 
-            var client = new ContentfulClient("spaceId", mockHttpClient.Object);
-            await client.MakeGetRequestAsync(requestUri, cancellationToken);
+                var client = new ContentfulClient("spaceId", mockHttpClient.Object);
+                await client.MakeGetRequestAsync(requestUri, cancellationToken);
+            });
         }
 
         [Test]
@@ -223,6 +225,7 @@ namespace Contentful.NET.Tests
             Assert.AreEqual(assetId, asset.SystemProperties.Id);
         }
 
+        // ReSharper disable once ClassNeverInstantiated.Local
         private class MockJsonModel
         {
             public string StringValue { get; set; }

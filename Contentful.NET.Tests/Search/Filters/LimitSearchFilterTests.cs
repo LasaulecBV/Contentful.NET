@@ -17,11 +17,10 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestThrowsExceptionOnInvalidLimit()
         {
             // ReSharper disable once ObjectCreationAsStatement
-            new LimitSearchFilter(-10);
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LimitSearchFilter(-10));
         }
     }
 }

@@ -54,10 +54,10 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionOnInvalidPropertyName()
         {
-            new NumericSearchFilter(null, 15, NumericEquality.GreaterThanEqualTo);
+            // ReSharper disable once ObjectCreationAsStatement
+            Assert.Throws<ArgumentException>(() => new NumericSearchFilter(null, 15, NumericEquality.GreaterThanEqualTo));
         }
     }
 }

@@ -32,11 +32,11 @@ namespace Contentful.NET.Tests.Search.Filters
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionOnInvalidPropertyName()
         {
             const string equalityValue = "asd";
-            new InclusionSearchFilter("", equalityValue, InEquality.NotIn);
+            // ReSharper disable once ObjectCreationAsStatement
+            Assert.Throws<ArgumentException>(() => new InclusionSearchFilter("", equalityValue, InEquality.NotIn));
         }
     }
 }

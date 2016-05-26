@@ -55,11 +55,14 @@ namespace Contentful.NET.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestThrowsExceptionOnInvalidJpegCompression()
         {
             const string baseUrl = "http://image.contentful.com";
-            var resized = ImageHelper.GetResizedImageUrl(baseUrl, type: ImageHelper.ImageType.Jpg, jpegCompression: 101);
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var resized = ImageHelper.GetResizedImageUrl(baseUrl,
+                    type: ImageHelper.ImageType.Jpg, jpegCompression: 101);
+            });
         }
     }
 }
